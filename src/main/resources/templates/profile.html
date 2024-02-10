@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>Welcome to Profile</h1>
+<div>
+ <p> Username : <span th:text="${user.username}"></span></p>
+ <p> Nama Lengkap : <span th:text="${user.fullName}"></span></p>
+ <p> NPM : <span th:text="${user.npm}"></span></p>
+ <p> Nama Universitas : <span th:text="${user.university}"></span></p>
+
+</div>
+</body>
+</html>

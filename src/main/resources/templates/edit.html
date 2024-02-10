@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+</head>
+<body>
+<th:block th:if="${session.msg}">
+    <p class="text-center text-success fs-4">[[${session.msg}]]</p>
+</th:block>
+<form action="/updateUser" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <div>
+        <label for="username" >Username</label>
+        <input type="text" id="username" name="username" th:value="${user.fullName}">
+    </div>
+    <div class="mb-3">
+        <label for="fullName">Nama Lengkap</label>
+        <input type="text" id="fullName" name="fullName" th:value="${user.fullName}">
+    </div>
+    <div class="mb-3">
+        <label for="npm">NPM</label>
+        <input type="text" id="npm" name="npm" th:value="${user.npm}">
+    </div>
+    <div class="mb-3">
+        <label for="university">Kata Sandi</label>
+        <input type="text" id="university" name="university" th:value="${user.university}">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+</body>
+</html>
