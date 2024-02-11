@@ -5,16 +5,11 @@
     <title>Home</title>
 </head>
 <body>
-<div class="dashboard">
-    <h1>
-        Welcome to the Dashboard
-    </h1>
-    <div class="dashboard_user">
-<!--        <h2 th:text="${user.fullName}">User's Name</h2>-->
-    </div>
-    <span sec:authorize="isAuthenticated"><a th:href="@{/logout}">Logout</a></span>
+    <h1>Welcome to the Dashboard</h1>
 
-
+<h1>Hallo <span th:text="${userdetail.username}"></span></h1>
+<span sec:authorize="isAuthenticated"><a th:href="@{/logout}">Logout</a></span>
+    <a th:href="@{'/profile/' + ${userdetail.username}}">Lihat Profil</a>
 </div>
 </body>
 </html>

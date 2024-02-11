@@ -14,6 +14,10 @@
         <p>Logout Successful</p>
     </div>
 
+    <div th:if="${param.delete}">
+        <p>Delete Account Successful</p>
+    </div>
+
     <h2>Login</h2>
     <form
             method="post"
@@ -32,7 +36,7 @@
         </div>
         <button type="submit">Login</button>
     </form>
-    <span>Register here :  <a th:href="@{/register/}">Register</a></span>
+    <span>Register here :  <a th:href="@{/register}">Register</a></span>
 </div>
 </body>
 </html>

@@ -36,6 +36,20 @@ public class UserController {
         return "home";
     }
 
+
+    @GetMapping("/profile/{username}")
+    public String profile(@PathVariable String username, Model model, Principal principal) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+        User user = userService.getUsername(username);
+        if (user != null && userDetails.getUsername().equals(user.getUsername())) {
+            model.addAttribute("user", user);
+            return "profile";
+        } else {
+            return "404";
+        }
+    }
+
+
     @GetMapping("/login")
     public String login(Model model, UserDto userDto) {
         model.addAttribute("user", userDto);
@@ -59,22 +73,11 @@ public class UserController {
         return "redirect:/register?success";
     }
 
-    @GetMapping("/profile/{id}")
-    public String profile(@PathVariable int id, Model model, Principal principal) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-        User user = userService.getUserId(id);
-        if (user != null && userDetails.getUsername().equals(user.getUsername())) {
-            model.addAttribute("user", user);
-            return "profile";
-        } else {
-            return "404";
-        }
-    }
 
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable int id, Model model, Principal principal) {
+    @GetMapping("/edit/{username}")
+    public String edit(@PathVariable String username, Model model, Principal principal) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-        User user = userService.getUserId(id);
+        User user = userService.getUsername(username);
         if (user != null && userDetails.getUsername().equals(user.getUsername())) {
             model.addAttribute("user", user);
             return "edit";
@@ -84,16 +87,21 @@ public class UserController {
     }
 
     @PostMapping("/updateUser")
-    public String update(@ModelAttribute User user, HttpSession session) {
-        User updateUser = userService.save(user);
-        if (updateUser != null) {
-            System.out.println("save success");
-            session.setAttribute("msg", "Update Successfully");
+    public String update(@ModelAttribute("user") User user) {
+        userService.save(user);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{username}")
+    public String loadEmpSave(@PathVariable String username, HttpSession session){
+        User user = userService.getUsername(username);
+        if(user != null){
+            userService.deleteUser(username); // Lakukan operasi penghapusan pengguna
+            session.setAttribute("msg", "Delete successful");
         } else {
-            System.out.println("something wrong on server");
-            session.setAttribute("msg", "something wrong on server");
+            session.setAttribute("msg", "Something wrong on server");
         }
-        return "redirect:/profile/{id}";
+        return "redirect:/";
     }
 }
 

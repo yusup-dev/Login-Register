@@ -31,13 +31,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserId(int id) {
-        return userRepository.findById(id).get();
+    public User getUsername(String username) {
+        return userRepository.findByUsername(username);
     }
+
 
     @Override
     public User save(User user) {
         User newUser = userRepository.save(user);
         return newUser;
+    }
+
+    @Override
+    public boolean deleteUser(String username) {
+        User user = userRepository.findByUsername(username);
+        if(user != null){
+            userRepository.delete(user);
+            return true;
+        }
+        return false;
     }
 }

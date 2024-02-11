@@ -11,7 +11,9 @@
  <p> Nama Lengkap : <span th:text="${user.fullName}"></span></p>
  <p> NPM : <span th:text="${user.npm}"></span></p>
  <p> Nama Universitas : <span th:text="${user.university}"></span></p>
+    <a th:href="@{'/edit/' + ${user.username}}">Edit Profil</a>
 
+    <a th:href="@{'/delete/' + ${user.username}}">Delete Account</a>
 </div>
 </body>
 </html>

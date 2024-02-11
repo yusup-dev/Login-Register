@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails    {
-
     private String username;
     private String password;
     private Collection<? extends  GrantedAuthority> authorities;
@@ -16,8 +15,6 @@ public class CustomUserDetails implements UserDetails    {
         this.password = password;
         this.authorities = authorities;
     }
-
-
     // misalnya buat role("admin", "user")
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

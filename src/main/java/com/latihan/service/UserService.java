@@ -12,7 +12,9 @@ public interface UserService {
 
     User save(UserDto userDto);
 
-    public User getUserId(int id);
+    public User getUsername(String username);
 
     public User save(User user);
+
+    public boolean deleteUser(String username);
 }

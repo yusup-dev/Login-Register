@@ -37,7 +37,7 @@ public class UserControllerTest {
         when(userService.save(user)).thenReturn(user);
 
         // Call the update() method
-        String result = userController.update(user, session);
+        String result = userController.update(user);
 
         // Verify that userService.save() was called once
         verify(userService, times(1)).save(user);
@@ -57,7 +57,7 @@ public class UserControllerTest {
         when(userService.save(user)).thenReturn(null);
 
         // Call the update() method
-        String result = userController.update(user, session);
+        String result = userController.update(user);
 
         // Verify that userService.save() was called once
         verify(userService, times(1)).save(user);
